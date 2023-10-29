@@ -15,10 +15,22 @@ model User {
   email    String @unique
   password String
 
-  name       String @unique
+  name       String  @unique
   avatarPath String? @default("/uploads/default-avatar.png") @map("avatar_path")
 
   isAdmin Boolean @default(false)
+}
+
+model ContactForm {
+  id        Int      @id @default(autoincrement())
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  fullName String
+  phone    String
+  email    String
+
+  @@map("contact_form")
 }
 
 model Solution {
@@ -39,4 +51,15 @@ model Task {
   pros  String
   cons  String
   image String
+}
+
+model Service {
+  id        Int      @id @default(autoincrement())
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  name              String
+  description       String?
+  mobileDescription String? @map("mobile_description")
+  image             String
 }
